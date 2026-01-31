@@ -12,14 +12,30 @@ the TopicController class (or any other) to access this object at startup. */
 public class TopicService {
 
     private List<Topic> topics = Arrays.asList(
-        new Topic(),
-        new Topic(),
-        new Topic(),
-        new Topic("spring", "Spring Framework", "Spring Framework Description")
+        new Topic("spring", "Spring Framework", "Spring Framework Description"),
+        new Topic("java", "Core Java", "Core Java Description"),
+        new Topic("javascript", "JavaScript", "JavaScript Framework Description"),
+        new Topic()
     );
 
     public List<Topic> getAllTopics() {
         return topics;
+    }
+
+
+    public Topic getTopic(String id) {
+
+        /* 
+            .stream() --> Iterates over the list
+            .filter() --> Tests if the object is legitimate
+            t -> t.get() --> Lambda expression where the current element is assigned to 't'
+                             and then t.getId() is called
+            .getId() --> t is a Topic object, and .getId() is a class method
+            .equals() --> Inherited from String class to compare text 
+            .findFirst() --> Method of .stream(); returns an 'Optional' object
+            .get() --> Method of the Optional class, returns the actual element found.
+         */
+        return topics.stream().filter(t -> t.getId().equals(id)).findFirst().get();
     }
 
 }
