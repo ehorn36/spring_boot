@@ -1,5 +1,6 @@
 package io.javabrains.springbootstarter.topic;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,12 +12,13 @@ the TopicController class (or any other) to access this object at startup. */
 @Service
 public class TopicService {
 
-    private List<Topic> topics = Arrays.asList(
+    
+    private List<Topic> topics = new ArrayList <> (Arrays.asList(
         new Topic("spring", "Spring Framework", "Spring Framework Description"),
         new Topic("java", "Core Java", "Core Java Description"),
         new Topic("javascript", "JavaScript", "JavaScript Framework Description"),
         new Topic()
-    );
+    ));
 
     public List<Topic> getAllTopics() {
         return topics;
@@ -36,6 +38,10 @@ public class TopicService {
             .get() --> Method of the Optional class, returns the actual element found.
          */
         return topics.stream().filter(t -> t.getId().equals(id)).findFirst().get();
+    }
+
+    public void addTopic(Topic topic) {
+        topics.add(topic);
     }
 
 }
