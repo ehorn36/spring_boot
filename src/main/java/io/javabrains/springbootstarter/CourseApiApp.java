@@ -1,4 +1,4 @@
-// localhost:8080
+// http://localhost:8080/hello
 
 package io.javabrains.springbootstarter;
 

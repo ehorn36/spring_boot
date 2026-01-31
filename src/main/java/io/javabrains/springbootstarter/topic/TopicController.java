@@ -1,8 +1,8 @@
 package io.javabrains.springbootstarter.topic;
 
-import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,14 +14,14 @@ public class TopicController {
     //     return "All Topics";
     // }
 
+    /* Spring Boot created an instance of the TopicService class elsewhere 
+    and can be accessed by ininitalizing an instance of the class using @Autowired. */
+    @Autowired
+    private TopicService topicService;
+
     @RequestMapping("/topics")
     public List<Topic> getAllTopics() {
-        return Arrays.asList(
-            new Topic(),
-            new Topic(),
-            new Topic(),
-            new Topic("spring", "Spring Framework", "Spring Framework Description")
-        );
+        return topicService.getAllTopics();
     }
 
 
